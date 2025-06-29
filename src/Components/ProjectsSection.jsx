@@ -5,10 +5,10 @@ const projects = [
     id: 1,
     title: "Trade SimX",
     description: "Financial Strategy Simulator with Live Trading Engine and Risk Analysis using different trading instruments",
-    image: "/projects/project1.png",
+    image: "./src/assets/projects/project1.png",
     tags: ["React", "TailwindCSS","TypeScript", "Supabase", "GoogleOAuth"],
-    demoUrl: "https:codehard25.github.io/Trading-App/",
-    githubUrl: "#",
+    demoUrl: "*",
+    githubUrl: "https:codehard25.github.io/Trading-App/",
   },
   {
     id: 2,
