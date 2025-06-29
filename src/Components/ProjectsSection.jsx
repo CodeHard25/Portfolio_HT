@@ -1,13 +1,16 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import project1 from "../assets/projects/project1.png";
+import project1 from "../assets/projects/project2.png";
+import project1 from "../assets/projects/project3.png";
 
 const projects = [
   {
     id: 1,
     title: "Trade SimX",
     description: "Financial Strategy Simulator with Live Trading Engine and Risk Analysis using different trading instruments",
-    image: "/src/assets/projects/project1.png",
+    image: project1,
     tags: ["React", "TailwindCSS","TypeScript", "Supabase", "GoogleOAuth"],
-    demoUrl: "https://github.com/codehard25/Trading-App/",
+    demoUrl: "https://codehard25.github.io/Trading-App/",
     githubUrl: "https://github.com/codehard25/Trading-App/" ,
   },
   {
@@ -15,7 +18,7 @@ const projects = [
     title: "Orbit Analytics Dashboard",
     description:
       "Interactive analytics dashboard with data visualization and filtering capabilities.",
-    image: "/projects/project2.png",
+    image: project2,
     tags: ["TypeScript", "D3.js", "Next.js"],
     demoUrl: "#",
     githubUrl: "#",
@@ -25,7 +28,7 @@ const projects = [
     title: "E-commerce Platform",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
+    image: project3,
     tags: ["React", "Node.js", "Stripe"],
     demoUrl: "#",
     githubUrl: "#",
