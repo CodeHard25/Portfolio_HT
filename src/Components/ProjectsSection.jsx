@@ -3,11 +3,11 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "SaaS Landing Page",
-    description: "A beautiful landing page app using React and Tailwind.",
+    title: "Trade SimX",
+    description: "Financial Strategy Simulator with Live Trading Engine and Risk Analysis using different trading instruments",
     image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
-    demoUrl: "#",
+    tags: ["React", "TailwindCSS","TypeScript", "Supabase", "GoogleOAuth"],
+    demoUrl: "https:codehard25.github.io/Trading-App/",
     githubUrl: "#",
   },
   {
