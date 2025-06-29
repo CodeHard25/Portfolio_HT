@@ -1,7 +1,7 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import project1 from "../assets/projects/project1.png";
-import project1 from "../assets/projects/project2.png";
-import project1 from "../assets/projects/project3.png";
+import project2 from "../assets/projects/project2.png";
+import project3 from "../assets/projects/project3.png";
 
 const projects = [
   {
