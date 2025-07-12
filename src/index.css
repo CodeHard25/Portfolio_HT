@@ -259,6 +259,11 @@
     @apply border-border;
   }
 
+  /* Improve touch targets for mobile */
+  button, a {
+    touch-action: manipulation;
+  }
+
   html {
     @apply scroll-smooth;
   }

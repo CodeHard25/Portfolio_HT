@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { StarBackground } from "@/components/StarBackground";
 import { LightBackground } from "@/components/LightBackground";
 import { HeroSection } from "@/components/HeroSection";
@@ -34,11 +33,6 @@ export const Home = () => {
       
       {/* Navbar */}
       <Navbar theme={theme} setTheme={setTheme} />
-      
-      {/* Theme Toggle */}
-           
-        <ThemeToggle theme={theme} setTheme={setTheme} /> 
-
 
       {/* Main Content */}
       <main>

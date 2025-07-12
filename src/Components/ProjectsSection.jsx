@@ -9,29 +9,27 @@ const projects = [
     title: "Trade SimX",
     description: "Financial Strategy Simulator with Live Trading Engine and Risk Analysis using different trading instruments",
     image: project1,
-    tags: ["React", "TailwindCSS","TypeScript", "Supabase", "GoogleOAuth"],
     demoUrl: "https://codehard25.github.io/Trading-App/",
-    githubUrl: "https://github.com/codehard25/Trading-App/" ,
+    githubUrl: "https://github.com/codehard25/Trading-App/",
+    tags: ["React", "JavaScript", "Trading", "Finance"],
   },
   {
     id: 2,
-    title: "Orbit Analytics Dashboard",
-    description:
-      "Interactive analytics dashboard with data visualization and filtering capabilities.",
+    title: "MMF-Men's Mastery Framework",
+    description: "A personalised E-Commerce store for Men's overall development with a GenAI Chatbot",
     image: project2,
-    tags: ["TypeScript", "D3.js", "Next.js"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "https://mens-mastery-framework.vercel.app/",
+    githubUrl: "https://github.com/CodeHard25/MMF",
+    tags: ["React", "E-commerce", "AI Chatbot", "Next.js"],
   },
   {
     id: 3,
-    title: "E-commerce Platform",
-    description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
+    title: "Legal Repository",
+    description: "Latest Project for my current org. Fully Automated Statutory Compliance Laws Informative platform with user authentication and AI chatbot.",
     image: project3,
-    tags: ["React", "Node.js", "Stripe"],
-    demoUrl: "#",
-    githubUrl: "#",
+    demoUrl: "./legal-repository.html",
+    githubUrl: null,
+    tags: ["Angular", ".NET Core", "AI Chatbot", "Legal Tech"],
   },
 ];
 
@@ -40,7 +38,6 @@ export const ProjectsSection = () => {
     <section id="projects" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
           Featured <span className="text-primary"> Projects </span>
         </h2>
 
@@ -65,8 +62,11 @@ export const ProjectsSection = () => {
 
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                  {project.tags?.map((tag, index) => (
+                    <span 
+                      key={index}
+                      className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -78,20 +78,28 @@ export const ProjectsSection = () => {
                 </p>
                 <div className="flex justify-between items-center">
                   <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
+                    {project.demoUrl && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                        aria-label={`View ${project.title} demo`}
+                      >
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                        aria-label={`View ${project.title} source code`}
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -103,7 +111,7 @@ export const ProjectsSection = () => {
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
             target="_blank"
-            href="https://github.com/machadop1407"
+            href="https://github.com/codehard25"
           >
             Check My Github <ArrowRight size={16} />
           </a>

@@ -10,10 +10,9 @@ const navItems = [
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
-  <ThemeToggle/>,
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ theme, setTheme }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -79,16 +78,25 @@ export const Navbar = () => {
                 )}
               </a>
             ))}
+            {/* Theme Toggle for Desktop */}
+            <div className="ml-2">
+              <ThemeToggle theme={theme} setTheme={setTheme} isInNavbar={true} />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="p-2 rounded-md md:hidden focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 rounded-md md:hidden focus:outline-none cursor-pointer touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsMenuOpen(!isMenuOpen);
+            }}
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            <div className="w-6 h-5 flex flex-col justify-between">
+            <div className="w-6 h-5 flex flex-col justify-between pointer-events-none">
               <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
               <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
               <span className={`w-full h-0.5 bg-foreground rounded-full transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
@@ -99,7 +107,7 @@ export const Navbar = () => {
 
       {/* Mobile Menu */}
       <motion.div
-        className="md:hidden"
+        className="md:hidden relative z-40"
         initial={{ height: 0, opacity: 0 }}
         animate={{
           height: isMenuOpen ? 'auto' : 0,
@@ -113,25 +121,28 @@ export const Navbar = () => {
             {navItems.map((item, key) => (
               <button
                 key={key}
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
                   const target = document.querySelector(item.href);
                   if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
                   }
                   setIsMenuOpen(false);
                 }}
-                className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 transition-colors duration-200 ${
+                className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 transition-colors duration-200 cursor-pointer touch-manipulation min-h-[44px] ${
                   window.location.hash === item.href
                     ? 'bg-accent text-primary font-medium'
-                    : 'text-foreground hover:bg-accent/50'
+                    : 'text-foreground hover:bg-accent/50 active:bg-accent/70'
                 }`}
+                style={{ WebkitTapHighlightColor: 'transparent' }}
               >
-                <span>{item.name}</span>
+                <span className="pointer-events-none">{item.name}</span>
               </button>
             ))}
             {/* Theme Toggle for Mobile */}
-            <div className="mt-2 px-4">
-              <ThemeToggle />
+            <div className="mt-2 px-4 flex justify-center">
+              <ThemeToggle theme={theme} setTheme={setTheme} isInNavbar={true} />
             </div>
           </div>
         </div>
