@@ -25,7 +25,7 @@ export const HeroSection = () => {
             Specializing in front-end development, I build interfaces that are
             both beautiful and functional.
           </p>
-          <p class="text-sm text-white align-sub italic ml-1" >Ps: I know the portfolio design is a bit childish <span class="ml-1" role="img" aria-label="laughing">😂</span></p>
+          <p class="text-sm text-white align-sub italic ml-1" >Ps: I know the portfolio background is a bit childish <span class="ml-1" role="img" aria-label="laughing">😂</span></p>
 
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
