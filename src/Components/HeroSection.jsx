@@ -24,8 +24,9 @@ export const HeroSection = () => {
             I create stellar web experiences with modern technologies.
             Specializing in front-end development, I build interfaces that are
             both beautiful and functional.
-            <span class="text-sm text-blue-600 dark:text-white align-sub italic ml-1" >Ps: I know the design is a bit childish <span class="ml-1" role="img" aria-label="laughing">😂</span></span>
           </p>
+          <p class="text-sm text-white align-sub italic ml-1" >Ps: I know the design is a bit childish <span class="ml-1" role="img" aria-label="laughing">😂</span></p>
+
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
             <a href="#projects" className="cosmic-button">
