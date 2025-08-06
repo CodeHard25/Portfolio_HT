@@ -24,12 +24,12 @@ const projects = [
   },
   {
     id: 3,
-    title: "Legal Repository",
-    description: "Latest Project for my current org. Fully Automated Statutory Compliance Laws Informative platform with user authentication and AI chatbot.",
+    title: "CandleStick AI",
+    description: "An AI powered trading signal Predictor using Candlestick pattern images and 16 technical indicators, achieving 60.63% accuracy-10% above typical benchmarks.",
     image: project3,
-    demoUrl: "./legal-repository.html",
+    demoUrl: "https://github.com/CodeHard25/CStick-AI",
     githubUrl: null,
-    tags: ["Angular", ".NET Core", "AI Chatbot", "Legal Tech"],
+    tags: ["PyTorch", "ResNet50", "FastAPI", "MERN", "Python"],
   },
 ];
 
