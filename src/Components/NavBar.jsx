@@ -66,7 +66,23 @@ export const Navbar = ({ theme, setTheme }) => {
               <a
                 key={key}
                 href={item.href}
-                className="  px-4 py-2 rounded-md flex items-center space-x-2 transition-colors duration-200 hover:bg-accent relative text-foreground"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.querySelector(item.href);
+                  if (target) {
+                    const navbarHeight = 80;
+                    const targetPosition = target.offsetTop - navbarHeight;
+
+                    window.scrollTo({
+                      top: targetPosition,
+                      behavior: 'smooth'
+                    });
+
+                    // Update URL hash
+                    window.history.pushState(null, null, item.href);
+                  }
+                }}
+                className="  px-4 py-2 rounded-md flex items-center space-x-2 transition-colors duration-200 hover:bg-accent relative text-foreground cursor-pointer"
               >
                 <span>{item.name}</span>
                 {window.location.hash === item.href && (
@@ -124,13 +140,29 @@ export const Navbar = ({ theme, setTheme }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  const target = document.querySelector(item.href);
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                  }
+
+                  // Close menu first
                   setIsMenuOpen(false);
+
+                  // Add a small delay to allow menu to close, then scroll
+                  setTimeout(() => {
+                    const target = document.querySelector(item.href);
+                    if (target) {
+                      // Get navbar height to offset scroll position
+                      const navbarHeight = 80;
+                      const targetPosition = target.offsetTop - navbarHeight;
+
+                      window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                      });
+
+                      // Update URL hash
+                      window.history.pushState(null, null, item.href);
+                    }
+                  }, 100);
                 }}
-                className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 transition-colors duration-200 cursor-pointer touch-manipulation min-h-[44px] ${
+                className={`flex items-center space-x-4 px-4 py-3 rounded-md my-1 transition-colors duration-200 cursor-pointer touch-manipulation min-h-[44px] w-full text-left ${
                   window.location.hash === item.href
                     ? 'bg-accent text-primary font-medium'
                     : 'text-foreground hover:bg-accent/50 active:bg-accent/70'
