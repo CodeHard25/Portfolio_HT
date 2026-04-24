@@ -12,6 +12,7 @@ import {
 } from "@react-three/rapier";
 
 import { profile } from "../data/profile";
+import { assetPath } from "../utils/assetPath";
 
 const textureLoader = new THREE.TextureLoader();
 const techItems = profile.techStack;
@@ -206,7 +207,7 @@ const TechStack = () => {
           ))}
         </Physics>
         <Environment
-          files="/models/char_enviorment.hdr"
+          files={assetPath("/models/char_enviorment.hdr")}
           environmentIntensity={0.5}
           environmentRotation={[0, 4, 2]}
         />

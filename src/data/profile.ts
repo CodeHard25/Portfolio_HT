@@ -1,3 +1,5 @@
+import { assetPath } from "../utils/assetPath";
+
 export const profile = {
   name: {
     first: "Hardik",
@@ -73,7 +75,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/hardiktyagi2503",
     github: "https://github.com/codehard25",
     portfolio: "https://codehard25.github.io/Portfolio_HT",
-    resume: "/resume/hardik-tyagi-resume.pdf",
+    resume: assetPath("/resume/hardik-tyagi-resume.pdf"),
   },
 
   /* ── What I Build — 4 AI-first specialties ──────────────────────────────── */
@@ -185,7 +187,7 @@ export const profile = {
       impact: "Live product · GenAI pipeline in production · Real user recommendations",
       tags: ["AI/ML", "Full-Stack", "GenAI"],
       link: "https://mens-mastery-framework.vercel.app/",
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
     {
       id: "genai-compliance",
@@ -203,7 +205,7 @@ export const profile = {
       impact: "Enterprise production deployment · Manual review time cut significantly",
       tags: ["AI/ML", "LegalTech", "Full-Stack"],
       link: undefined,
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
     {
       id: "candlestick-ai",
@@ -221,7 +223,7 @@ export const profile = {
       impact: "Live platform · ML model in production · AWS deployment",
       tags: ["AI/ML", "Full-Stack", "DevOps"],
       link: "https://codehard25.github.io/CStickAI/",
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
     {
       id: "healthcare-billing",
@@ -237,7 +239,7 @@ export const profile = {
       impact: "~40% reduction in manual reconciliation effort · 10K+ claims/month",
       tags: ["Healthcare", "Full-Stack", "DevOps"],
       link: undefined,
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
     {
       id: "ecommerce-sps",
@@ -253,7 +255,7 @@ export const profile = {
       impact: "Improved platform delivery speed · Consistent search across modules",
       tags: ["Full-Stack", "eCommerce"],
       link: undefined,
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
     {
       id: "lead-routing",
@@ -269,7 +271,7 @@ export const profile = {
       impact: "Manual lead ops eliminated · CRM data consistency improved",
       tags: ["Automation", "Full-Stack"],
       link: undefined,
-      image: "/images/placeholder.webp",
+      image: assetPath("/images/placeholder.webp"),
     },
   ],
 
@@ -278,21 +280,21 @@ export const profile = {
 
   /* ── Tech Stack (physics balls) ─────────────────────────────────────────── */
   techStack: [
-    { name: "React",           image: "/images/react2.webp" },
-    { name: "Angular",         image: "/images/angular.jpeg" },
-    { name: "Node.js",         image: "/images/node2.webp" },
-    { name: "Express",         image: "/images/express.webp" },
-    { name: "FastAPI",         image: "/images/fastapi.jpeg" },
-    { name: "PostgreSQL",      image: "/images/postgre.jpeg" },
-    { name: "MongoDB",         image: "/images/mongo.webp" },
-    { name: "Docker",          image: "/images/docker.jpeg" },
-    { name: "AWS",             image: "/images/aws.jpeg" },
-    { name: "Redux",           image: "/images/redux.jpeg" },
-    { name: "Redis",           image: "/images/redis.jpeg" },
-    { name: "Claude API",      image: "/images/claude.jpeg" },
-    { name: "GitHub Actions",  image: "/images/gitactions.jpeg" },
-    { name: "TypeScript",      image: "/images/typescript.webp" },
-    { name: "JavaScript",      image: "/images/javascript.webp" },
+    { name: "React",           image: assetPath("/images/react2.webp") },
+    { name: "Angular",         image: assetPath("/images/angular.jpeg") },
+    { name: "Node.js",         image: assetPath("/images/node2.webp") },
+    { name: "Express",         image: assetPath("/images/express.webp") },
+    { name: "FastAPI",         image: assetPath("/images/fastapi.jpeg") },
+    { name: "PostgreSQL",      image: assetPath("/images/postgre.jpeg") },
+    { name: "MongoDB",         image: assetPath("/images/mongo.webp") },
+    { name: "Docker",          image: assetPath("/images/docker.jpeg") },
+    { name: "AWS",             image: assetPath("/images/aws.jpeg") },
+    { name: "Redux",           image: assetPath("/images/redux.jpeg") },
+    { name: "Redis",           image: assetPath("/images/redis.jpeg") },
+    { name: "Claude API",      image: assetPath("/images/claude.jpeg") },
+    { name: "GitHub Actions",  image: assetPath("/images/gitactions.jpeg") },
+    { name: "TypeScript",      image: assetPath("/images/typescript.webp") },
+    { name: "JavaScript",      image: assetPath("/images/javascript.webp") },
   ],
 
   /* ── Grouped skill categories (sidebar) ────────────────────────────────── */
