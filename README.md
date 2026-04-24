@@ -101,10 +101,10 @@ GitHub Pages is static hosting only. The AI chatbot needs a server runtime to ke
 - `npm run preview` - preview built app locally
 - `npm run lint` - lint project
 
-## GSAP Licensing Note
+## GSAP Note
 
-This repository currently uses `gsap-trial`.
-For commercial/production licensing requirements, use the official GSAP installation flow:
+This project uses the standard `gsap` package (including plugins such as `ScrollSmoother` and `SplitText`).
+Install/update details:
 
 https://gsap.com/docs/v3/Installation/
 
