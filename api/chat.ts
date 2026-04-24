@@ -1,15 +1,24 @@
-import { portfolioContext, chatSystemPrompt } from "../src/data/portfolio-context";
+import { portfolioContext, chatSystemPrompt } from "../src/data/portfolio-context.js";
 
 export const config = { runtime: "edge" };
 
 const MAX_MESSAGES = 40;
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-const DEFAULT_MODEL = "gpt-5.4-mini";
+const DEFAULT_MODEL = "gpt-4o-mini";
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
 };
+
+type RuntimeEnvHost = {
+  process?: {
+    env?: Record<string, string | undefined>;
+  };
+};
+
+const runtimeEnv =
+  (globalThis as unknown as RuntimeEnvHost).process?.env ?? {};
 
 interface Message {
   role: "user" | "assistant";
@@ -38,7 +47,7 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response("Bad request", { status: 400 });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = runtimeEnv.OPENAI_API_KEY;
   if (!apiKey) {
     return new Response(
       JSON.stringify({
@@ -51,7 +60,7 @@ export default async function handler(req: Request): Promise<Response> {
       }
     );
   }
-  const model = (process.env.OPENAI_MODEL || DEFAULT_MODEL).trim();
+  const model = (runtimeEnv.OPENAI_MODEL || DEFAULT_MODEL).trim();
 
   try {
     const upstream = await fetch(OPENAI_API_URL, {
