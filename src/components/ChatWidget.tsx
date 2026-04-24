@@ -14,6 +14,9 @@ const STARTER_PROMPTS = [
   "Can he lead an AI engineering team?",
 ];
 
+const chatApiBase = (import.meta.env.VITE_CHAT_API_BASE_URL || "").replace(/\/$/, "");
+const chatApiUrl = `${chatApiBase}/api/chat`;
+
 const TypingDots = () => (
   <div className="chat-typing">
     <span /><span /><span />
@@ -88,7 +91,7 @@ const ChatWidget = () => {
     setStreamingMsg("");
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(chatApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages }),

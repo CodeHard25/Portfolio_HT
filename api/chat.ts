@@ -1,9 +1,10 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { portfolioContext, chatSystemPrompt } from "../src/data/portfolio-context";
 
 export const config = { runtime: "edge" };
 
 const MAX_MESSAGES = 40;
+const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
+const DEFAULT_MODEL = "gpt-4.1-mini";
 
 interface Message {
   role: "user" | "assistant";
@@ -36,38 +37,89 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response("Bad request", { status: 400 });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return new Response("Server configuration error", { status: 500 });
   }
-
-  const client = new Anthropic({ apiKey });
+  const model = process.env.OPENAI_MODEL || DEFAULT_MODEL;
 
   try {
-    const stream = await client.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 512,
-      system: chatSystemPrompt(portfolioContext),
-      messages,
-      stream: true,
+    const upstream = await fetch(OPENAI_API_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: 512,
+        stream: true,
+        temperature: 0.4,
+        messages: [
+          {
+            role: "system",
+            content: chatSystemPrompt(portfolioContext),
+          },
+          ...messages,
+        ],
+      }),
     });
 
+    if (!upstream.ok || !upstream.body) {
+      return new Response("AI service error", { status: 502 });
+    }
+
     const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
     const readable = new ReadableStream({
       async start(controller) {
+        const reader = upstream.body!.getReader();
+        let buffer = "";
+        let isClosed = false;
+
         try {
-          for await (const chunk of stream) {
-            if (
-              chunk.type === "content_block_delta" &&
-              chunk.delta.type === "text_delta"
-            ) {
-              const data = JSON.stringify({ text: chunk.delta.text });
-              controller.enqueue(encoder.encode(`data: ${data}\n\n`));
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const events = buffer.split("\n\n");
+            buffer = events.pop() || "";
+
+            for (const event of events) {
+              const lines = event.split("\n");
+              for (const line of lines) {
+                if (!line.startsWith("data:")) continue;
+                const payload = line.slice(5).trim();
+                if (!payload) continue;
+
+                if (payload === "[DONE]") {
+                  controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+                  controller.close();
+                  isClosed = true;
+                  return;
+                }
+
+                try {
+                  const parsed = JSON.parse(payload);
+                  const delta = parsed?.choices?.[0]?.delta?.content;
+                  if (typeof delta === "string" && delta.length > 0) {
+                    const data = JSON.stringify({ text: delta });
+                    controller.enqueue(encoder.encode(`data: ${data}\n\n`));
+                  }
+                } catch {
+                  // Ignore partial/invalid chunks and continue streaming.
+                }
+              }
             }
           }
+
           controller.enqueue(encoder.encode("data: [DONE]\n\n"));
         } finally {
-          controller.close();
+          reader.releaseLock();
+          if (!isClosed) {
+            controller.close();
+          }
         }
       },
     });
