@@ -4,7 +4,12 @@ export const config = { runtime: "edge" };
 
 const MAX_MESSAGES = 40;
 const OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-const DEFAULT_MODEL = "gpt-4.1-mini";
+const DEFAULT_MODEL = "gpt-4o-mini";
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
 
 interface Message {
   role: "user" | "assistant";
@@ -14,11 +19,7 @@ interface Message {
 export default async function handler(req: Request): Promise<Response> {
   if (req.method === "OPTIONS") {
     return new Response(null, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
+      headers: CORS_HEADERS,
     });
   }
 
@@ -39,9 +40,18 @@ export default async function handler(req: Request): Promise<Response> {
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return new Response("Server configuration error", { status: 500 });
+    return new Response(
+      JSON.stringify({
+        error: "Server configuration error",
+        details: "Missing OPENAI_API_KEY",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+      }
+    );
   }
-  const model = process.env.OPENAI_MODEL || DEFAULT_MODEL;
+  const model = (process.env.OPENAI_MODEL || DEFAULT_MODEL).trim();
 
   try {
     const upstream = await fetch(OPENAI_API_URL, {
@@ -66,7 +76,30 @@ export default async function handler(req: Request): Promise<Response> {
     });
 
     if (!upstream.ok || !upstream.body) {
-      return new Response("AI service error", { status: 502 });
+      let details = "OpenAI request failed";
+      try {
+        const errorBody = await upstream.json();
+        const upstreamMessage = errorBody?.error?.message;
+        if (typeof upstreamMessage === "string" && upstreamMessage.length > 0) {
+          details = upstreamMessage;
+        }
+      } catch {
+        // Ignore non-JSON error payloads.
+      }
+
+      const status = upstream.status >= 400 && upstream.status < 500 ? upstream.status : 502;
+      return new Response(
+        JSON.stringify({
+          error: "AI service error",
+          status: upstream.status,
+          model,
+          details,
+        }),
+        {
+          status,
+          headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+        }
+      );
     }
 
     const encoder = new TextEncoder();
@@ -128,10 +161,22 @@ export default async function handler(req: Request): Promise<Response> {
       headers: {
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
-        "Access-Control-Allow-Origin": "*",
+        ...CORS_HEADERS,
       },
     });
-  } catch {
-    return new Response("AI service error", { status: 502 });
+  } catch (error) {
+    const details =
+      error instanceof Error && error.message ? error.message : "Unknown server error";
+    return new Response(
+      JSON.stringify({
+        error: "AI service error",
+        model,
+        details,
+      }),
+      {
+        status: 502,
+        headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+      }
+    );
   }
 }
