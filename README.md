@@ -4,11 +4,11 @@ A portfolio that is intentionally built like a product, not a static profile pag
 
 It presents my work as a **Senior AI Engineer** focused on production-grade systems across healthcare, fintech, legaltech, and ecommerce.
 
-- Live portfolio: https://codehard25.github.io/Portfolio_HT
+- Live portfolio: https://portfolio-ht-ebon.vercel.app/
 - Role focus: Senior AI Engineer
 - Current status: Open to Senior AI Roles
 
-![Portfolio Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
+![Portfolio Preview](public/images/preview.png)
 
 ## What This Portfolio Represents
 

@@ -11,8 +11,8 @@ Location: Faridabad, India
 Availability: Open to senior AI engineering roles immediately. Open to remote and Bengaluru.
 GitHub: https://github.com/codehard25
 LinkedIn: https://www.linkedin.com/in/hardiktyagi2503
-Portfolio: https://codehard25.github.io/Portfolio_HT
-Resume: Available for download on the website
+Portfolio: https://portfolio-ht-ebon.vercel.app/
+Resume: https://drive.google.com/file/d/1qPaPo21FTOrL_b2k12A_xsdszmsMjqgk/view?usp=sharing
 
 ## PROFESSIONAL SUMMARY
 Senior AI Engineer with 3+ years building production-grade LLM systems, RAG pipelines,

@@ -74,8 +74,8 @@ export const profile = {
     locationNote: "Open to remote · Bengaluru",
     linkedin: "https://www.linkedin.com/in/hardiktyagi2503",
     github: "https://github.com/codehard25",
-    portfolio: "https://codehard25.github.io/Portfolio_HT",
-    resume: assetPath("/resume/hardik-tyagi-resume.pdf"),
+    portfolio: "https://portfolio-ht-ebon.vercel.app/",
+    resume: "https://drive.google.com/file/d/1qPaPo21FTOrL_b2k12A_xsdszmsMjqgk/view?usp=sharing",
   },
 
   /* ── What I Build — 4 AI-first specialties ──────────────────────────────── */
