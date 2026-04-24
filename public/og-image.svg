@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#080b12"/>
+  <!-- Background grid lines -->
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <!-- Glow orbs -->
+  <ellipse cx="200" cy="315" rx="300" ry="200" fill="rgba(0,212,255,0.06)"/>
+  <ellipse cx="1000" cy="315" rx="300" ry="200" fill="rgba(124,58,237,0.06)"/>
+  <!-- Availability badge -->
+  <rect x="80" y="160" width="220" height="28" rx="14" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.4)" stroke-width="1"/>
+  <circle cx="96" cy="174" r="4" fill="#10b981"/>
+  <text x="108" y="179" font-family="monospace" font-size="12" fill="#10b981" letter-spacing="1">OPEN TO ROLES</text>
+  <!-- Name -->
+  <text x="80" y="270" font-family="system-ui, sans-serif" font-weight="800" font-size="80" fill="#f0f6fc">Hardik Tyagi</text>
+  <!-- Role with gradient simulation -->
+  <text x="80" y="330" font-family="system-ui, sans-serif" font-weight="700" font-size="36" fill="#00d4ff">Senior AI Engineer</text>
+  <!-- Tagline -->
+  <text x="80" y="385" font-family="monospace" font-size="18" fill="#8b949e">LLM Systems · RAG Pipelines · GenAI Products · FastAPI</text>
+  <!-- Pills -->
+  <rect x="80" y="420" width="90" height="28" rx="14" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+  <text x="125" y="439" font-family="monospace" font-size="12" fill="#00d4ff" text-anchor="middle">FastAPI</text>
+  <rect x="184" y="420" width="110" height="28" rx="14" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+  <text x="239" y="439" font-family="monospace" font-size="12" fill="#00d4ff" text-anchor="middle">Claude API</text>
+  <rect x="308" y="420" width="90" height="28" rx="14" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+  <text x="353" y="439" font-family="monospace" font-size="12" fill="#00d4ff" text-anchor="middle">PyTorch</text>
+  <rect x="412" y="420" width="100" height="28" rx="14" fill="rgba(0,212,255,0.12)" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+  <text x="462" y="439" font-family="monospace" font-size="12" fill="#00d4ff" text-anchor="middle">LangChain</text>
+  <!-- URL -->
+  <text x="80" y="560" font-family="monospace" font-size="16" fill="#484f58">hardiktyagi.dev</text>
+  <!-- Stats on the right -->
+  <text x="900" y="250" font-family="system-ui, sans-serif" font-weight="800" font-size="64" fill="url(#grad)" text-anchor="middle">6</text>
+  <text x="900" y="285" font-family="monospace" font-size="14" fill="#8b949e" text-anchor="middle">AI Products Shipped</text>
+  <text x="900" y="360" font-family="system-ui, sans-serif" font-weight="800" font-size="64" fill="url(#grad)" text-anchor="middle">3+</text>
+  <text x="900" y="395" font-family="monospace" font-size="14" fill="#8b949e" text-anchor="middle">Years in AI Systems</text>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+</svg>

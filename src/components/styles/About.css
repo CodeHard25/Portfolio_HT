@@ -1,0 +1,156 @@
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  opacity: 1;
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  padding-top: calc(var(--section-gap) + 30vh); ;
+  margin: auto;
+  min-height: var(--vh);
+  padding: 80px 0;
+  box-sizing: border-box;
+}
+
+.about-me {
+  width: 520px;
+  max-width: calc(100% - 20px);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.about-bio {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.6vw, 20px);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.about-cta-copy {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent-cyan);
+  padding-left: 16px;
+}
+
+/* ─── Trait Cards ───────────────────────────────────────────────────────────── */
+.about-traits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.about-trait-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.about-trait-card:hover {
+  border-color: var(--border-glow);
+  background: var(--accent-cyan-soft);
+}
+
+.about-trait-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.about-trait-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin: 0 0 4px;
+  letter-spacing: 0.02em;
+}
+
+.about-trait-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Resume CTA ────────────────────────────────────────────────────────────── */
+.about-resume-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-glow);
+  background: transparent;
+  color: var(--accent-cyan);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.2s ease, transform 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.about-resume-cta:hover {
+  background: var(--accent-cyan-soft);
+  transform: translateX(3px);
+  color: var(--accent-cyan);
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+@media only screen and (max-width: 1024px) {
+  .about-section {
+    justify-content: flex-start;
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .about-me {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .about-me {
+    width: 46%;
+  }
+
+  .about-bio {
+    font-size: 1.75vw;
+    line-height: 1.6;
+  }
+}
+
+@media only screen and (min-width: 1950px) {
+  .about-bio {
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+}

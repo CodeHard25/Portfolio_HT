@@ -1,0 +1,178 @@
+.header {
+  display: flex;
+  max-width: var(--cMaxWidth);
+  width: var(--cWidth);
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: -100px;
+  box-sizing: border-box;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 9999;
+}
+
+.navbar-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  background: var(--gradient-ai);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+.navbar-connect {
+  position: absolute;
+  display: none;
+  left: calc(50% - 88px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-connect:hover {
+  color: var(--accent-cyan);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ─── Nav Links ─────────────────────────────────────────────────────────────── */
+.header ul {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  column-gap: 32px;
+  row-gap: 8px;
+  align-items: flex-end;
+}
+
+.header ul li {
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header ul li:hover {
+  color: var(--text-primary);
+}
+
+/* ─── Recruiter Toggle ──────────────────────────────────────────────────────── */
+.recruiter-toggle {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.recruiter-toggle:hover {
+  border-color: var(--border-glow);
+  color: var(--accent-cyan);
+}
+
+.recruiter-toggle-active {
+  border-color: var(--accent-cyan) !important;
+  background: var(--accent-cyan-soft) !important;
+  color: var(--accent-cyan) !important;
+}
+
+.recruiter-toggle-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.recruiter-toggle-active .recruiter-toggle-dot {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+}
+
+/* ─── Recruiter Mode Body Overrides ─────────────────────────────────────────── */
+body.recruiter-mode .work-case-blocks {
+  display: none;
+}
+body.recruiter-mode .work-featured-stack {
+  display: none;
+}
+body.recruiter-mode .work-compact-stack {
+  display: none;
+}
+body.recruiter-mode .work-compact-summary {
+  display: block;
+}
+body.recruiter-mode .whatido-card-desc {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+body.recruiter-mode .career-highlights {
+  display: flex;
+}
+body.recruiter-mode .career-tags {
+  display: none;
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────────────── */
+@media only screen and (min-width: 500px) {
+  .header ul {
+    flex-direction: row;
+    align-items: center;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .recruiter-toggle {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .navbar-connect { display: block; }
+}
+
+@media only screen and (min-width: 1200px) {
+  .header { padding: 30px 0; }
+  .header ul {
+    column-gap: 56px;
+    font-size: 14px;
+  }
+  .navbar-connect {
+    font-size: 14px;
+    left: calc(50% - 64px);
+  }
+  .navbar-title { font-size: 18px; }
+}
