@@ -29,7 +29,7 @@
 .navbar-connect {
   position: absolute;
   display: none;
-  left: calc(50% - 88px);
+  left: calc(50% - 110px);
   top: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-mono);
@@ -47,7 +47,7 @@
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
 }
 
 /* ─── Nav Links ─────────────────────────────────────────────────────────────── */
@@ -161,6 +161,12 @@ body.recruiter-mode .career-tags {
 }
 
 @media only screen and (min-width: 900px) {
+  .header ul {
+    column-gap: 28px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
   .navbar-connect { display: block; }
 }
 
@@ -172,7 +178,7 @@ body.recruiter-mode .career-tags {
   }
   .navbar-connect {
     font-size: 14px;
-    left: calc(50% - 64px);
+    left: calc(50% - 92px);
   }
   .navbar-title { font-size: 18px; }
 }

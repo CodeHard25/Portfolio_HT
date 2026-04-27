@@ -13,28 +13,27 @@ import StatsStrip from "./StatsStrip";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
+import { getViewportWidth, shouldRenderCharacter } from "../utils/responsive";
 
 const TechStack = lazy(() => import("./TechStack"));
 const ChatWidget = lazy(() => import("./ChatWidget"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
-  );
+  const [viewportWidth, setViewportWidth] = useState<number>(getViewportWidth());
   const [isCharacterVisible, setIsCharacterVisible] = useState(true);
   const [isWorkFocusMode, setIsWorkFocusMode] = useState(false);
 
   useEffect(() => {
     const resizeHandler = () => {
       setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
+      setViewportWidth(getViewportWidth());
     };
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView]);
+  }, []);
 
   const handleViewWorkClick = () => {
     setIsCharacterVisible(false);
@@ -53,7 +52,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <SocialIcons />
 
       {/* Desktop-only: 3D character sits outside scroll wrapper (fixed) */}
-      {isDesktopView && isCharacterVisible && !isWorkFocusMode && children}
+      {shouldRenderCharacter({
+        width: viewportWidth,
+        isCharacterVisible,
+        isWorkFocusMode,
+      }) && children}
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
@@ -62,10 +65,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {!isWorkFocusMode && (
               <>
                 {/* 1. Hero */}
-                {/* Mobile: 3D character injected inside Landing */}
-                <Landing onPrimaryCtaClick={handleViewWorkClick}>
-                  {!isDesktopView && isCharacterVisible && !isWorkFocusMode && children}
-                </Landing>
+                <Landing onPrimaryCtaClick={handleViewWorkClick} />
               </>
             )}
 

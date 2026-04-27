@@ -45,23 +45,23 @@ export const profile = {
 
   /* ── Summary ────────────────────────────────────────────────────────────── */
   summary:
-    "I'm a Senior AI Engineer who's been building production AI systems for 3+ years across healthcare, fintech, legaltech, and ecommerce. I don't just integrate APIs — I design the full pipeline: from data ingestion and model orchestration to deployment, observability, and the business workflows that depend on them.",
+    "I'm an AI Engineer with 3+ years of experience building LLM-powered applications — NLP pipelines, NL-to-SQL systems, Voice AI, and AI-driven backend services using Python and FastAPI. I specialise in prompt engineering, embeddings, vector search, and integrating AI models into scalable production systems, with hands-on experience deploying AI workloads via Docker, Kubernetes, CI/CD, and AWS/GCP.",
 
   traits: [
     {
       icon: "🧠",
-      title: "AI-First Thinking",
-      description: "Every system I build has intelligence designed in from day one.",
+      title: "LLM Systems Builder",
+      description: "NL-to-SQL, RAG pipelines, Voice AI, multi-stage orchestration — built and shipped.",
     },
     {
       icon: "⚙️",
-      title: "Production-Ready",
-      description: "6 AI products live and serving real users across 4 domains.",
+      title: "Production-First",
+      description: "Every system I build is async, containerised, monitored, and ready for real load.",
     },
     {
       icon: "🌐",
-      title: "Cross-Domain",
-      description: "Healthcare · FinTech · LegalTech · eCommerce",
+      title: "Full-Stack AI",
+      description: "FastAPI backends · React frontends · Docker/K8s · AWS — end to end.",
     },
   ],
 
@@ -300,34 +300,34 @@ export const profile = {
   /* ── Grouped skill categories (sidebar) ────────────────────────────────── */
   skillGroups: [
     {
-      label: "AI / ML",
+      label: "AI / ML & GenAI",
       icon: "🧠",
-      skills: ["LangChain", "OpenAI API", "Claude API", "PyTorch", "RAG Systems", "LLM Agents", "LlamaIndex", "HuggingFace"],
+      skills: ["LangChain", "LlamaIndex", "OpenAI API", "Claude API", "PyTorch", "TensorFlow", "scikit-learn", "RAG", "NLP", "Prompt Engineering", "LLM Agents", "OCR Extraction", "Pinecone", "Qdrant", "FAISS", "HuggingFace"],
     },
     {
       label: "Backend & APIs",
       icon: "⚙️",
-      skills: ["FastAPI", "Node.js", "Express", ".NET Core", "Redis", "WebSockets", "REST APIs", "Async Python"],
+      skills: ["FastAPI", "Node.js", "Express", "ASP.NET MVC", "Django", "Flask", "Redis", "WebSockets", "REST APIs", "Async Python"],
     },
     {
       label: "Frontend",
       icon: "🖥️",
-      skills: ["React", "Angular", "TypeScript", "JavaScript", "Next.js"],
+      skills: ["React", "Angular", "TypeScript", "JavaScript (ES6+)", "Redux", "Zustand", "HTML5", "CSS3"],
     },
     {
       label: "Databases",
       icon: "🗄️",
-      skills: ["PostgreSQL", "MongoDB", "Redis", "Pinecone (Vector DB)"],
+      skills: ["PostgreSQL", "MySQL", "MongoDB", "Microsoft SQL Server", "Redis"],
     },
     {
       label: "DevOps & Cloud",
       icon: "☁️",
-      skills: ["Docker", "AWS", "GitHub Actions", "Kubernetes", "AWS ECS"],
+      skills: ["Docker", "Kubernetes", "AWS ECS", "AWS", "GCP", "GitHub Actions", "CI/CD", "Jenkins"],
     },
     {
-      label: "Automation",
-      icon: "🔗",
-      skills: ["n8n", "Zapier", "Webhooks", "CRM Integrations"],
+      label: "Testing & Automation",
+      icon: "🔬",
+      skills: ["Pytest", "Postman", "Playwright", "Cypress", "Jest", "Selenium", "Swagger", "n8n", "Zapier", "Agentic Pipelines"],
     },
   ],
 

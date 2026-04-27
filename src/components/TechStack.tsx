@@ -13,6 +13,7 @@ import {
 
 import { profile } from "../data/profile";
 import { assetPath } from "../utils/assetPath";
+import { isDesktopWidth } from "../utils/responsive";
 
 const textureLoader = new THREE.TextureLoader();
 const techItems = profile.techStack;
@@ -120,6 +121,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
 
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(isDesktopWidth(window.innerWidth));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,8 +143,11 @@ const TechStack = () => {
       });
     });
     window.addEventListener("scroll", handleScroll);
+    const handleResize = () => setIsDesktop(isDesktopWidth(window.innerWidth));
+    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
   const materials = useMemo(() => {
@@ -178,43 +183,47 @@ const TechStack = () => {
         </div>
       </div>
 
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
-        <Environment
-          files={assetPath("/models/char_enviorment.hdr")}
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#080b12" aoRadius={2} intensity={1.0} />
-        </EffectComposer>
-      </Canvas>
+      {isDesktop ? (
+        <Canvas
+          shadows
+          gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
+          camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+          onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
+          className="tech-canvas"
+        >
+          <ambientLight intensity={1} />
+          <spotLight
+            position={[20, 20, 25]}
+            penumbra={1}
+            angle={0.2}
+            color="white"
+            castShadow
+            shadow-mapSize={[512, 512]}
+          />
+          <directionalLight position={[0, 5, -4]} intensity={2} />
+          <Physics gravity={[0, 0, 0]}>
+            <Pointer isActive={isActive} />
+            {spheres.map((props, i) => (
+              <SphereGeo
+                key={i}
+                {...props}
+                material={materials[Math.floor(Math.random() * materials.length)]}
+                isActive={isActive}
+              />
+            ))}
+          </Physics>
+          <Environment
+            files={assetPath("/models/char_enviorment.hdr")}
+            environmentIntensity={0.5}
+            environmentRotation={[0, 4, 2]}
+          />
+          <EffectComposer enableNormalPass={false}>
+            <N8AO color="#080b12" aoRadius={2} intensity={1.0} />
+          </EffectComposer>
+        </Canvas>
+      ) : (
+        <div className="tech-canvas tech-canvas-static" aria-hidden="true" />
+      )}
     </div>
   );
 };

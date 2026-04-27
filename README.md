@@ -67,6 +67,7 @@ Deployment is fully driven from GitHub Actions:
 
 - Frontend (static): `.github/workflows/pages.yml` -> GitHub Pages
 - Chat API (serverless): `.github/workflows/vercel-api.yml` -> Vercel Edge Function
+- Quality gates: lint + unit tests (Vitest) + responsive smoke tests (Playwright) + build
 
 ### Why this split
 
@@ -100,6 +101,8 @@ GitHub Pages is static hosting only. The AI chatbot needs a server runtime to ke
 - `npm run build` - TypeScript build + Vite production build
 - `npm run preview` - preview built app locally
 - `npm run lint` - lint project
+- `npm run test:unit` - run unit tests (Vitest)
+- `npm run test:e2e:smoke` - run responsive smoke tests (Playwright)
 
 ## GSAP Note
 

@@ -260,6 +260,18 @@ main {
   position: relative;
 }
 
+.tech-canvas-static {
+  min-height: 300px;
+  border-radius: 12px;
+  margin: 0 auto;
+  width: calc(100% - 24px);
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 212, 255, 0.16), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.14), transparent 40%),
+    linear-gradient(180deg, rgba(13, 17, 23, 0.95), rgba(8, 11, 18, 1));
+}
+
 /* ─── Responsive ────────────────────────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
   body {
@@ -285,6 +297,9 @@ main {
   .tech-canvas {
     height: 60vh !important;
     min-height: 420px;
+  }
+  .tech-canvas-static {
+    min-height: 240px;
   }
 }
 

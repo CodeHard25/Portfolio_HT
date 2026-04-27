@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import Loading from "../components/Loading";
+import { isDesktopWidth } from "../utils/responsive";
 
 interface LoadingType {
   isLoading: boolean;
@@ -24,6 +25,20 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
     setIsLoading,
     setLoading,
   };
+
+  useEffect(() => {
+    const isE2E = new URLSearchParams(window.location.search).has("e2e");
+    if (isE2E) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Mobile/tablet mode skips 3D character loading, so we complete the loader quickly.
+    if (isDesktopWidth(window.innerWidth)) return;
+    const timer = window.setTimeout(() => setLoading(100), 250);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   useEffect(() => {}, [loading]);
 
   return (

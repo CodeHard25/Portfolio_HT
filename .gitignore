@@ -29,3 +29,6 @@ backup/
 .env.example
 .vercel
 .env*.local
+playwright-report/
+test-results/
+coverage/

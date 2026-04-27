@@ -39,6 +39,18 @@ jobs:
           echo "npm ci failed after 3 attempts."
           exit 1
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Install Playwright (Chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E smoke tests
+        run: npm run test:e2e:smoke
+
       - name: Build
         env:
           VITE_CHAT_API_BASE_URL: ${{ secrets.VITE_CHAT_API_BASE_URL }}

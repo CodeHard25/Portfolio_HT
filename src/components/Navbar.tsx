@@ -6,49 +6,89 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/Navbar.css";
 import { profile } from "../data/profile";
 import { useRecruiterMode } from "../context/RecruiterModeContext";
+import {
+  isDesktopWidth,
+  scrollToSectionWithOffset,
+} from "../utils/responsive";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+export let smoother: ScrollSmoother | null = null;
+
+const getHeaderOffset = (): number =>
+  (document.querySelector(".header") as HTMLElement | null)?.offsetHeight ?? 80;
 
 const Navbar = () => {
   const { isRecruiterMode, toggle } = useRecruiterMode();
 
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
-    });
+    const createSmootherIfNeeded = () => {
+      if (!isDesktopWidth(window.innerWidth)) return;
+      if (smoother) return;
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.7,
+        speed: 1.7,
+        effects: true,
+        autoResize: true,
+        ignoreMobileResize: true,
+      });
+      smoother.scrollTop(0);
+    };
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
+    const destroySmootherIfNeeded = () => {
+      if (!smoother) return;
+      smoother.kill();
+      smoother = null;
+    };
+
+    createSmootherIfNeeded();
 
     const links = document.querySelectorAll(".header ul a");
+    const cleanupFns: Array<() => void> = [];
+
     links.forEach((elem) => {
       const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
+      const handleClick = (e: Event) => {
         const elem = e.currentTarget as HTMLAnchorElement;
         const section = elem.getAttribute("data-href");
         const isSectionLink = !!section && section.startsWith("#");
 
-        if (!isSectionLink || window.innerWidth <= 1024) return;
-
+        if (!isSectionLink) return;
         e.preventDefault();
-        const navOffset =
-          (document.querySelector(".header") as HTMLElement | null)
-            ?.offsetHeight ?? 80;
-        const position =
-          section === "#whatido-intro" ? `top top+=${navOffset + 20}` : "top top";
-        smoother.scrollTo(section, true, position);
-      });
+
+        const navOffset = getHeaderOffset();
+        if (isDesktopWidth(window.innerWidth) && smoother) {
+          const position =
+            section === "#whatido-intro"
+              ? `top top+=${navOffset + 20}`
+              : "top top";
+          smoother.scrollTo(section, true, position);
+          return;
+        }
+
+        scrollToSectionWithOffset(section, navOffset + 12);
+      };
+
+      element.addEventListener("click", handleClick);
+      cleanupFns.push(() => element.removeEventListener("click", handleClick));
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+
+    const handleResize = () => {
+      if (isDesktopWidth(window.innerWidth)) {
+        createSmootherIfNeeded();
+        ScrollSmoother.refresh(true);
+        return;
+      }
+      destroySmootherIfNeeded();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      cleanupFns.forEach((fn) => fn());
+      window.removeEventListener("resize", handleResize);
+      destroySmootherIfNeeded();
+    };
   }, []);
 
   return (
